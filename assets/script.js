@@ -38,18 +38,18 @@ function leftSlide() {
 	if (count < 0) {
 		count = slides.length - 1;
 	}
-	showSlide(count);
+	console.log("click");
 }
+
+arrowRight.addEventListener('click', leftSlide);
 
 function rightSlide() {
 	count++;
 	if (count > slides.length - 1) {
 		count = 0;
 	}
-	showSlide(count);
+	console.log("click2");
 }
 
 arrowLeft.addEventListener('click', rightSlide);
-arrowRight.addEventListener('click', leftSlide);
 
-showSlide(count);
