@@ -17,14 +17,6 @@ const slides = [
 	}
 ]
 
-const boxes = document.querySelectorAll(".banner-img");
-console.log(boxes);
-boxes.forEach((box) => {
-	box.addEventListener("click", (e) => {
-		console.log(e.target);
-	})
-})
-
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
 const dots = document.querySelector(".dots");
@@ -37,16 +29,27 @@ let dot = document.querySelectorAll(".dot");
 for (let i = 0; i < slideLength; i++) {
 	dots.innerHTML = dots.innerHTML + "<div class='dot'></div>";
 }
+slider.src = `./assets/images/slideshow/${count}.jpg`;
+title.innerHTML = slides[count].tagLine;
+console.log(count);
 
-function Carousel(count) {
-	dots.forEach((index, item) => {
-		if (index === count) {
-			item.classList.add("dot_selected");
-		} else {
-			item.classList.remove("dot_selected");
-		}
-	})
-	slider.src = `./assets/images/slideshow/${countImage}`;
-	textBanner.innerHTML = title;
-	console.log(count);
-};
+function prevSlide() {
+	count--;
+	if (count < 0) {
+		count = slides.length - 1;
+	}
+	showSlide(count);
+}
+
+function nextSlide() {
+	count++;
+	if (count > slides.length - 1) {
+		count = 0;
+	}
+	showSlide(count);
+}
+
+arrowLeft.addEventListener('click', prevSlide);
+arrowRight.addEventListener('click', nextSlide);
+
+showSlide(count);
