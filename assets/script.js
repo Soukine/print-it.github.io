@@ -33,7 +33,7 @@ slider.src = `./assets/images/slideshow/${count}.jpg`;
 title.innerHTML = slides[count].tagLine;
 console.log(count);
 
-function prevSlide() {
+function leftSlide() {
 	count--;
 	if (count < 0) {
 		count = slides.length - 1;
@@ -41,7 +41,7 @@ function prevSlide() {
 	showSlide(count);
 }
 
-function nextSlide() {
+function rightSlide() {
 	count++;
 	if (count > slides.length - 1) {
 		count = 0;
@@ -49,7 +49,7 @@ function nextSlide() {
 	showSlide(count);
 }
 
-arrowLeft.addEventListener('click', prevSlide);
-arrowRight.addEventListener('click', nextSlide);
+arrowLeft.addEventListener('click', rightSlide);
+arrowRight.addEventListener('click', leftSlide);
 
 showSlide(count);
