@@ -29,19 +29,21 @@ let dot = document.querySelectorAll(".dot");
 for (let i = 0; i < slideLength; i++) {
 	dots.innerHTML = dots.innerHTML + "<div class='dot'></div>";
 }
+
 slider.src = `./assets/images/slideshow/${count}.jpg`;
 title.innerHTML = slides[count].tagLine;
 console.log(count);
 
 function leftSlide() {
+	//document.getElementById("banner_" + count).classList.remove("banner-img")
 	count--;
 	if (count < 0) {
 		count = slides.length - 1;
 	}
+	document.getElementsByClassName("banner-img").attr("src", `./assets/images/slideshow/slide${count}.jpg`);
 	console.log("click");
 }
-
-arrowRight.addEventListener('click', leftSlide);
+arrowLeft.addEventListener('click', leftSlide);
 
 function rightSlide() {
 	count++;
@@ -50,6 +52,5 @@ function rightSlide() {
 	}
 	console.log("click2");
 }
-
-arrowLeft.addEventListener('click', rightSlide);
+arrowRight.addEventListener('click', rightSlide);
 
