@@ -20,7 +20,6 @@ const slides = [
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
 const dots = document.querySelector(".dots");
-const slider = document.querySelectorAll(".banner-img");
 let slideLength = slides.length;
 let title = document.querySelector("#banner > p");
 let count = 0;
@@ -30,19 +29,26 @@ for (let i = 0; i < slideLength; i++) {
 	dots.innerHTML = dots.innerHTML + "<div class='dot'></div>";
 }
 
-slider.src = `./assets/images/slideshow/${count}.jpg`;
-title.innerHTML = slides[count].tagLine;
-console.log(count);
+//dot[count].classList.remove("dot_selected");
+//title.innerHTML = slides[count].tagLine;
+
 
 function leftSlide() {
-	//document.getElementById("banner_" + count).classList.remove("banner-img")
+
 	count--;
 	if (count < 0) {
 		count = slides.length - 1;
 	}
-	document.getElementsByClassName("banner-img").attr("src", `./assets/images/slideshow/slide${count}.jpg`);
-	console.log("click");
+
+	let img = document.getElementsByClassName("banner-img");
+	if (img.length > 0) {
+
+		img[0].src = `./assets/images/slideshow/` + slides[count].image;
+
+	}
+
 }
+
 arrowLeft.addEventListener('click', leftSlide);
 
 function rightSlide() {
@@ -50,7 +56,10 @@ function rightSlide() {
 	if (count > slides.length - 1) {
 		count = 0;
 	}
-	console.log("click2");
+	let img = document.getElementsByClassName("banner-img");
+	if (img.length > 0) {
+		img[0].src = `./assets/images/slideshow/` + slides[count].image;
+	}
 }
 arrowRight.addEventListener('click', rightSlide);
 
