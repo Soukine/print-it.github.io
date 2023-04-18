@@ -20,20 +20,21 @@ const slides = [
 
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
-
 const slidesLength = slides.length;
+
 let count = 0;
 
 const bannerImg = document.querySelector(".banner-img");
 const title = document.querySelector(".banner-img + p");
 
 const dots = document.querySelector(".dots");
-let dot = document.querySelectorAll(".dot");
+
 
 for (let i = 0; i < slidesLength; i++) {
 	dots.innerHTML += "<div class='dot'></div>";
 }
 
+let dot = document.querySelectorAll(".dot");
 
 bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
 dot[count].classList.add("dot_selected");
@@ -43,27 +44,21 @@ title.innerHTML = slides[count].tagLine;
 arrowLeft.addEventListener("click", () => {
 	dot[count].classList.remove("dot_selected");
 	count--;
-
 	if (count === -1) {
 		count = slidesLength - 1;
 	}
-
 	bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
-	dot[count].classList.add("dot_selected");
 	title.innerHTML = slides[count].tagLine;
-
+	dot[count].classList.add("dot_selected");
 });
 
 arrowRight.addEventListener("click", () => {
 	dot[count].classList.remove("dot_selected");
 	count++;
-
 	if (count === 4) {
 		count = 0;
 	}
-
 	bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
-	dot[count].classList.add("dot_selected");
 	title.innerHTML = slides[count].tagLine;
-
+	dot[count].classList.add("dot_selected");
 });
