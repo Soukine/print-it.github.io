@@ -1,65 +1,69 @@
 const slides = [
 	{
 		image: "slide1.jpg",
-		tagLine: "Impressions tous formats <span>en boutique et en ligne</span>"
+		tagLine: "Impressions tous formats <span>en boutique et en ligne</span>",
 	},
 	{
 		image: "slide2.jpg",
-		tagLine: "Tirages haute définition grand format <span>pour vos bureaux et events</span>"
+		tagLine:
+			"Tirages haute définition grand format <span>pour vos bureaux et events</span>",
 	},
 	{
 		image: "slide3.jpg",
-		tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>"
+		tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
 	},
 	{
 		image: "slide4.png",
-		tagLine: "Autocollants <span>avec découpe laser sur mesure</span>"
-	}
-]
+		tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
+	},
+];
 
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
-const dots = document.querySelector(".dots");
-let slideLength = slides.length;
-let title = document.querySelector("#banner > p");
+
+const slidesLength = slides.length;
 let count = 0;
+
+const bannerImg = document.querySelector(".banner-img");
+const title = document.querySelector(".banner-img + p");
+
+const dots = document.querySelector(".dots");
 let dot = document.querySelectorAll(".dot");
 
-for (let i = 0; i < slideLength; i++) {
-	dots.innerHTML = dots.innerHTML + "<div class='dot'></div>";
+for (let i = 0; i < slidesLength; i++) {
+	dots.innerHTML += "<div class='dot'></div>";
 }
 
-//dot[count].classList.remove("dot_selected");
-//title.innerHTML = slides[count].tagLine;
+
+bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
+dot[count].classList.add("dot_selected");
+title.innerHTML = slides[count].tagLine;
 
 
-function leftSlide() {
-
+arrowLeft.addEventListener("click", () => {
+	dot[count].classList.remove("dot_selected");
 	count--;
-	if (count < 0) {
-		count = slides.length - 1;
+
+	if (count === -1) {
+		count = slidesLength - 1;
 	}
 
-	let img = document.getElementsByClassName("banner-img");
-	if (img.length > 0) {
+	bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
+	dot[count].classList.add("dot_selected");
+	title.innerHTML = slides[count].tagLine;
 
-		img[0].src = `./assets/images/slideshow/` + slides[count].image;
+});
 
-	}
-
-}
-
-arrowLeft.addEventListener('click', leftSlide);
-
-function rightSlide() {
+arrowRight.addEventListener("click", () => {
+	dot[count].classList.remove("dot_selected");
 	count++;
-	if (count > slides.length - 1) {
+
+	if (count === 4) {
 		count = 0;
 	}
-	let img = document.getElementsByClassName("banner-img");
-	if (img.length > 0) {
-		img[0].src = `./assets/images/slideshow/` + slides[count].image;
-	}
-}
-arrowRight.addEventListener('click', rightSlide);
 
+	bannerImg.src = "./assets/images/slideshow/" + slides[count].image;
+	dot[count].classList.add("dot_selected");
+	title.innerHTML = slides[count].tagLine;
+
+});
